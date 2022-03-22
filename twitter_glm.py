@@ -6,7 +6,7 @@ from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 from joblib import dump
 
-data = pd.read_csv('venv/data/twitter_sentiments.csv')
+data = pd.read_csv('data/twitter_sentiments.csv')
 data.head()
 
 train, test = train_test_split(data, test_size=0.2, stratify=data['label'], random_state=21)
