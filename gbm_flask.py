@@ -1,12 +1,26 @@
 from flask import Flask, render_template, request, flash, url_for
 from werkzeug.utils import secure_filename, redirect
 import os
+import joblib
 
 UPLOAD_FOLDER = 'upload_folder'
 ALLOWED_EXTENSIONS = {'csv'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+model = joblib.load(filename='model/test_gbm.joblib')
+
+print(model.predict(X_test))
+
+def requestResults(dat):
+    # get the tweets text
+    tweets = get_related_tweets(name)
+    # get the prediction
+    tweets['prediction'] = pipeline.predict(tweets['tweet_text'])
+    # get the value counts of different labels predicted
+    data = str(tweets.prediction.value_counts()) + '\n\n'
+    return data + str(tweets)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -38,6 +52,8 @@ def upload_file():
       <input type=submit value=Upload>
     </form>
     '''
+
+
 
 #
 # @app.route('/upload/')
